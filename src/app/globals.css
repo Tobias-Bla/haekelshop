@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7efe7;
+  --foreground: #2d1d1a;
+  --card: #fffaf5;
+  --card-strong: #fff4ea;
+  --line: rgba(109, 79, 69, 0.14);
+  --rose: #c96f5d;
+  --rose-strong: #a95545;
+  --sand: #ead8c5;
+  --gold: #d9ae66;
+  --ink-soft: #6f5b56;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-strong: var(--card-strong);
+  --color-line: var(--line);
+  --color-rose: var(--rose);
+  --color-rose-strong: var(--rose-strong);
+  --color-sand: var(--sand);
+  --color-gold: var(--gold);
+  --color-ink-soft: var(--ink-soft);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background:
+    radial-gradient(circle at top left, rgba(217, 174, 102, 0.2), transparent 28%),
+    radial-gradient(circle at top right, rgba(201, 111, 93, 0.16), transparent 24%),
+    linear-gradient(180deg, #fff7ef 0%, #f7efe7 45%, #f4ece4 100%);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 65%);
+}
+
+::selection {
+  background: rgba(201, 111, 93, 0.22);
+  color: var(--foreground);
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.shop-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.soft-card {
+  background: color-mix(in srgb, var(--card) 92%, white 8%);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 50px rgba(95, 63, 52, 0.08);
+}
+
+.headline-balance {
+  text-wrap: balance;
 }

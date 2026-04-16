@@ -1,33 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Haekelshop - E-Commerce-Website für handgefertigte Häkeltierchen
 
-## Getting Started
+Willkommen zu **Vio's Häkelshop** - einer modernen, schönen E-Commerce-Website für handgefertigte Häkeltierchen.
 
-First, run the development server:
+## ✨ Features
+
+- 🎨 **Schöne, einladende Benutzeroberfläche** mit Modern Design
+- 📸 **Einfaches Produkt-Upload-System** - Bilder und Details hochladen
+- 🛒 **Shopping Cart** - Produkte zum Warenkorb hinzufügen
+- 💳 **Bestellverwaltung** - Komplettes Order-Management
+- 📱 **Responsives Design** - Optimiert für Handy, Tablet und Desktop
+- ⚡ **Blitzschnell** - Next.js mit Vercel Deployment
+- 🔒 **Admin Panel** - Einfache Verwaltung aller Produkte
+- 💾 **SQLite Datenbank** - Kostenlos und einfach zu verwenden
+
+## 🚀 Getting Started
+
+### Installation
 
 ```bash
+# Abhängigkeiten installieren
+npm install
+
+# Datenbank migrieren
+npx prisma migrate dev
+
+# Entwicklungsserver starten
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öffne [http://localhost:3000](http://localhost:3000) im Browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Admin-Panel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Gehe zu [http://localhost:3000/admin](http://localhost:3000/admin) um:
+- Neue Häkeltierchen hochzuladen
+- Bilder einzufügen
+- Preise und Beschreibungen zu verwalten
+- Verfügbare Menge zu aktualisieren
 
-## Learn More
+## 📁 Projektstruktur
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── page.tsx              # Startseite mit Produktgalerie
+│   ├── admin/                # Admin-Panel
+│   ├── checkout/             # Kasse/Bestellformular
+│   ├── order-confirmation/   # Bestellbestätigung
+│   ├── api/
+│   │   ├── products/         # Produkt-APIs
+│   │   ├── orders/           # Bestellungs-APIs
+│   │   └── upload/           # Bild-Upload-API
+│   └── layout.tsx            # Root Layout mit Toast
+├── components/
+│   ├── ProductCard.tsx       # Produktkarte
+│   ├── ProductForm.tsx       # Admin-Formular
+│   ├── UploadImage.tsx       # Bild-Upload
+│   └── CartSidebar.tsx       # Warenkorb-Sidebar
+├── store/
+│   └── cartStore.ts          # Zustand Cart Store
+└── lib/
+    └── db.ts                 # Prisma Client
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🗄️ Datenbank
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Das System verwendet **SQLite** mit Prisma als ORM:
+
+- **Products** - Deine Häkeltierchen
+- **Orders** - Kundenbestellungen
+- **OrderItems** - Artikel in Bestellungen
+- **Cart** - Zwischenspeicher für Warenkorb
+- **CartItems** - Artikel im Warenkorb
+
+## 🌐 Deployment auf Vercel
+
+```bash
+# Vercel CLI installieren
+npm i -g vercel
+
+# Deployen
+vercel deploy
+
+# Produktivumgebung
+vercel deploy --prod
+```
+
+### Vercel Environment Variables
+
+Erstelle eine `.env.production` mit:
+```
+DATABASE_URL="file:./prod.db"
+```
+
+## 📦 Konfiguration
+
+Wichtige Dateien:
+- `prisma/schema.prisma` - Datenbankschema
+- `next.config.ts` - Next.js Konfiguration
+- `tsconfig.json` - TypeScript Konfiguration
+- `tailwind.config.ts` - Tailwind CSS Konfiguration
+
+## 🎨 Styling
+
+Das Projekt nutzt **Tailwind CSS** für schnelle und schöne Gestaltung. Die Farben sind auf Rosa/Pink abgestimmt.
+
+## 📱 API Endpoints
+
+### Produkte
+- `GET /api/products` - Alle Produkte abrufen
+- `POST /api/products` - Neues Produkt erstellen
+- `GET /api/products/[id]` - Einzelnes Produkt
+- `PATCH /api/products/[id]` - Produkt aktualisieren
+- `DELETE /api/products/[id]` - Produkt löschen
+
+### Bestellungen
+- `GET /api/orders` - Alle Bestellungen
+- `POST /api/orders` - Neue Bestellung erstellen
+- `GET /api/orders/[id]` - Einzelne Bestellung
+
+### Upload
+- `POST /api/upload` - Bild hochladen
+
+## 🛠️ Entwicklung
+
+```bash
+# Typescript Überprüfung
+npm run lint
+
+# Build
+npm run build
+
+# Production-Server
+npm run start
+```
+
+## 📚 Tech Stack
+
+- **Framework**: Next.js 16 mit App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Database**: SQLite mit Prisma
+- **State Management**: Zustand
+- **Notifications**: React Hot Toast
+- **Deployment**: Vercel
+
+## 💡 Nächste Schritte
+
+1. ✅ Projekt ist bereit
+2. 📸 Laden Sie Ihre Häkeltierchen im Admin-Panel hoch
+3. 🎨 Passen Sie Texte und Farben an (wenn gewünscht)
+4. 🌐 Deployen Sie auf Vercel
+5. 💳 Integrieren Sie Payment-Systeme (optional)
+
+## 📞 Support
+
+Bei Fragen, schauen Sie sich die Prisma, Next.js und Tailwind CSS Dokumentation an!
+
+---
+
+**Gemacht mit 💕 für Vio's Häkelshop**
 
 ## Deploy on Vercel
 

@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  password  String
+  name      String?
+  role      String     @default("admin") // admin only for now
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Product {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  image       String     // URL to image in storage
+  category    String     @default("animals")
+  stock       Int        @default(1)
+  featured    Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  orderItems  OrderItem[]
+  cartItems   CartItem[]
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  sessionId String     @unique
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String     @id @default(cuid())
+  cart      Cart       @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId    String
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  quantity  Int
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  
+  @@unique([cartId, productId])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  email         String
+  fullName      String
+  address       String
+  city          String
+  postalCode    String
+  phone         String
+  total         Float
+  status        String      @default("pending") // pending, paid, shipped, delivered, canceled
+  paymentId     String?
+  trackingId    String?
+  items         OrderItem[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String     @id @default(cuid())
+  order     Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
+  product   Product    @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  price     Float
+  createdAt DateTime   @default(now())
+}
