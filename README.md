@@ -7,6 +7,7 @@ Willkommen zu **Vio's Häkelshop** - einer modernen, schönen E-Commerce-Website
 - 🎨 **Schöne, einladende Benutzeroberfläche** mit Modern Design
 - 📸 **Einfaches Produkt-Upload-System** - Bilder und Details hochladen
 - 🛒 **Shopping Cart** - Produkte zum Warenkorb hinzufügen
+
 - 💳 **Bestellverwaltung** - Komplettes Order-Management
 - 📱 **Responsives Design** - Optimiert für Handy, Tablet und Desktop
 - ⚡ **Blitzschnell** - Next.js mit Vercel Deployment
